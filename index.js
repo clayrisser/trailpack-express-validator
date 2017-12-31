@@ -1,5 +1,6 @@
 import Trailpack from 'trailpack';
 import _ from 'lodash';
+import web from './config/web';
 
 module.exports = class ValidatorTrailpack extends Trailpack {
 
@@ -19,6 +20,15 @@ module.exports = class ValidatorTrailpack extends Trailpack {
   }
 
   configure() {
-    return undefined;
+    const c = this.app.config;
+    c.web.middlewares.validator = c.web.middlewares.validator || web.middlewares.validator;
+    const { order } = c.web.middlewares;
+    order.splice(_.indexOf(order, 'bodyParser') + 1, 0, 'validator');
+    this.app.validators = _.zipObject(
+      _.map(_.keys(this.app.api.validators), key => key),
+      _.map(this.app.api.validators, (Validator) => {
+        return new Validator(this.app);
+      })
+    );
   }
 };
