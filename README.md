@@ -49,7 +49,7 @@ export default class UserValidator extends Validator {
 }
 ```
 
-```
+```js
 // config/validators.js
 
 export default {
