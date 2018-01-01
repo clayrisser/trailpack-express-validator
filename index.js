@@ -21,9 +21,11 @@ module.exports = class ValidatorTrailpack extends Trailpack {
 
   configure() {
     const c = this.app.config;
+    c.web.middlewares.expressValidator = c.web.middlewares.expressValidator || web.middlewares.expressValidator;
     c.web.middlewares.validator = c.web.middlewares.validator || web.middlewares.validator;
     const { order } = c.web.middlewares;
-    order.splice(_.indexOf(order, 'bodyParser') + 1, 0, 'validator');
+    order.splice(_.indexOf(order, 'bodyParser') + 1, 0, web.middlewares.order);
+    c.web.middlewares.order = _.flatten(order);
     this.app.validators = _.zipObject(
       _.map(_.keys(this.app.api.validators), key => key),
       _.map(this.app.api.validators, (Validator) => {
