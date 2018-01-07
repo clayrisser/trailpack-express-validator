@@ -1,15 +1,17 @@
-# trailpack-validator
+# trailpack-express-validator
+
+Trailpack validation for Trails application using express validator
 
 ## Usage
 
 ```sh
-npm install --save trailpack-validator
+npm install --save trailpack-express-validator
 ```
 
 ```js
 // api/validators/SomeValidator.js
 
-import Validator from 'trailpack-validator/validator';
+import Validator from 'trailpack-express-validator/validator';
 
 export default class UserValidator extends Validator {
   register() {

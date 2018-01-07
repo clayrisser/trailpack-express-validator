@@ -2,7 +2,7 @@ import Trailpack from 'trailpack';
 import _ from 'lodash';
 import web from './config/web';
 
-module.exports = class ValidatorTrailpack extends Trailpack {
+export default class ValidatorTrailpack extends Trailpack {
 
   constructor(app) {
     super(app, {
