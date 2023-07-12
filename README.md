@@ -2,6 +2,8 @@
 
 Trailpack validation for Trails application using express validator
 
+![](assets/trailpack-express-validator.png)
+
 ## Usage
 
 ```sh
